@@ -34,9 +34,9 @@ goto :validate
     if "%~1"=="" echo Required field 'operation' at index '1' has not been filled in
     if "%~2"=="" echo Required field 'root' at index '2' has not been filled in
     if "%~3"=="" echo Required field 'name' at index '3' has not been filled in
-    if "%~4"=="" echo Required field 'venv' at index '4' has not been filled in & exit \B
+    if "%~4"=="" echo Required field 'venv' at index '4' has not been filled in
     
-    goto :parse
+    else goto :parse
     
 :install
     echo Installing librarys
