@@ -49,9 +49,8 @@ goto :validate
     goto :end
 
 :end
-    set /p p=< batch/path.txt
-    echo %p%
-    python main.py %operation% %root% %name% %venv% %lib%
+    ::set /p pa=< batch/path.txt
+    python "%~dp0/main.py" %operation% %root% %name% %venv% %lib%
     if %installlib%==1 if %venv%==0 goto :install
     exit \B
 
