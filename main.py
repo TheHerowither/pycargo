@@ -63,6 +63,7 @@ def to_bool(a):
         return False
 if sys.argv[1] == "new":
     params = sys.argv
+    print(f"Creating project in {params[2]}/{params[3]}")
     new_project(params[2], params[3], to_bool(params[4]), [params[i] for i in range(5, len(params))])
 else:
     print("operation invalid")
