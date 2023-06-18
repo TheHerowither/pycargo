@@ -8,6 +8,7 @@ set venv=%~4
 set lib=
 set installlib=
 
+cd %path%
 goto :validate
 
 :help
@@ -26,7 +27,6 @@ goto :validate
     echo    In case you want to preinstall the librarys, add the --PreInstall flag
     echo    However, if you are making a venv this flag will do nothing
     echo:
-    exit \B
 
 :validate
     if "%~1"=="?" goto :help
@@ -34,9 +34,9 @@ goto :validate
     if "%~1"=="" echo Required field 'operation' at index '1' has not been filled in
     if "%~2"=="" echo Required field 'root' at index '2' has not been filled in
     if "%~3"=="" echo Required field 'name' at index '3' has not been filled in
-    if "%~4"=="" echo Required field 'venv' at index '4' has not been filled in
+    if "%~4"=="" echo Required field 'venv' at index '4' has not been filled in & goto :eof
     
-    else goto :parse
+    goto :parse
     
 :install
     echo Installing librarys
@@ -56,3 +56,4 @@ goto :validate
     if "%~5"=="--AddLib" set lib=%lib%%~6 & shift & shift & goto :parse
     if "%~5"=="--PreInstall" set installlib=1 & shift & goto :parse
     goto :end
+:eof
