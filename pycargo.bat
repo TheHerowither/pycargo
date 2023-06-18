@@ -8,7 +8,8 @@ set venv=%~4
 set lib=
 set installlib=
 
-cd %CD%
+set pa=%~dp0
+
 goto :validate
 
 :help
@@ -50,7 +51,8 @@ goto :validate
 
 :end
     ::set /p pa=< batch/path.txt
-    python "%~dp0/main.py" %operation% %root% %name% %venv% %lib%
+::    echo %~dp0
+    python "%pa%\\main.py" %operation% "%CD%\\%root%" %name% %venv% %lib%
     if %installlib%==1 if %venv%==0 goto :install
     exit \B
 
