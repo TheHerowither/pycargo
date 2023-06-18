@@ -50,7 +50,7 @@ goto :validate
 
 :end
     set /p p=< batch/path.txt
-    echo p
+    echo %p%
     python main.py %operation% %root% %name% %venv% %lib%
     if %installlib%==1 if %venv%==0 goto :install
     exit \B
