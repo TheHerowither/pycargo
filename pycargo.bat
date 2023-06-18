@@ -55,8 +55,8 @@ goto :validate
     ::set /p pa=< batch/path.txt
 ::    echo %~dp0
     python "%pa%\\main.py" %operation% "%CD%\\%root%" %name% %venv% %lib%
-    if %installlib%==1 if %venv%==0 goto :install
     if %startcode%==1 cd "%CD%\\%root%\\%name%" & code .
+    if %installlib%==1 if %venv%==0 goto :install
     exit \B
 
 :parse
