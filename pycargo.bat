@@ -8,7 +8,7 @@ set venv=%~4
 set lib=
 set installlib=
 
-cd %path%
+cd %CD%
 goto :validate
 
 :help
