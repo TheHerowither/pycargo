@@ -7,6 +7,7 @@ set name=%~3
 set venv=%~4
 set lib=
 set installlib=
+set startcode=
 
 set pa=%~dp0
 
@@ -28,6 +29,7 @@ goto :validate
     echo    In case you want to preinstall the librarys, add the --PreInstall flag
     echo    However, if you are making a venv this flag will do nothing
     echo:
+    echo    --StartCode if this flag is active the project will be opened in vscode after cration
     goto :eof
 
 :validate
@@ -54,10 +56,13 @@ goto :validate
 ::    echo %~dp0
     python "%pa%\\main.py" %operation% "%CD%\\%root%" %name% %venv% %lib%
     if %installlib%==1 if %venv%==0 goto :install
+    if %startcode%==1 cd "%CD%\\%root%\\%name%" & code .
     exit \B
 
 :parse
     if "%~5"=="--AddLib" set lib=%lib%%~6 & shift & shift & goto :parse
     if "%~5"=="--PreInstall" set installlib=1 & shift & goto :parse
+    if "%~5"=="--StartCode" set startcode=1 & shift & goto :parse
+
     goto :end
 :eof
