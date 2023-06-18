@@ -27,6 +27,7 @@ goto :validate
     echo    In case you want to preinstall the librarys, add the --PreInstall flag
     echo    However, if you are making a venv this flag will do nothing
     echo:
+    goto :eof
 
 :validate
     if "%~1"=="?" goto :help
