@@ -49,7 +49,7 @@ goto :validate
     goto :end
 
 :end
-    python %path%/main.py %operation% %root% %name% %venv% %lib%
+    python "%path%/main.py" %operation% %root% %name% %venv% %lib%
     if %installlib%==1 if %venv%==0 goto :install
     exit \B
 
