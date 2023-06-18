@@ -49,8 +49,7 @@ goto :validate
     goto :end
 
 :end
-    ::echo Creating project in %root%/%name%
-    python main.py %operation% %root% %name% %venv% %lib%
+    python %path%/main.py %operation% %root% %name% %venv% %lib%
     if %installlib%==1 if %venv%==0 goto :install
     exit \B
 
