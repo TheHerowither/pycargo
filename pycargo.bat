@@ -9,7 +9,7 @@ set lib=
 set installlib=
 set startcode=
 
-set pa=%~dp0
+set pa=%CD%
 
 goto :validate
 
@@ -21,7 +21,7 @@ goto :validate
     echo:
     echo ###### HOW TO USE ######
     echo Creating a new project:
-    echo    pycargo new 'root folder' 'name of project' '0 or 1, if the project should be made in a venv'
+    echo    pycargo new 'name of project' '0 or 1, if the project should be made in a venv'
     echo:
     echo    To add librarys, add the --AddLib flag, and put the library in a string
     echo    so for example to add pygame, it would be '--AddLib "pygame"'
@@ -34,7 +34,7 @@ goto :validate
 
 :build
     echo building
-    python "%pa%\\main.py" build 
+    python "%pa%\\main.py" build %CD% 
     goto :eof
 
 :validate
@@ -42,7 +42,6 @@ goto :validate
     if "%~1"=="build" goto :build
 
     if "%~1"=="" echo Required field 'operation' at index '1' has not been filled in
-    if "%~2"=="" echo Required field 'root' at index '2' has not been filled in
     if "%~3"=="" echo Required field 'name' at index '3' has not been filled in
     if "%~4"=="" echo Required field 'venv' at index '4' has not been filled in & goto :eof
     
