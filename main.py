@@ -62,6 +62,9 @@ def to_bool(a):
         return True
     if (a == "false" or a == "False" or a == "0"):
         return False
+
+print(sys.argv)
+#Handle inputs
 if sys.argv[1] == "new":
     params = sys.argv
     print(f"Creating project in {params[2]}/{params[3]}")
