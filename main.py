@@ -1,6 +1,7 @@
 import os
 import json
 import sys
+from scripts.prepare_build import *
 def list_to_string(list_a : list[str], sep = ""):
     return_val = ""
     for i in list_a:
@@ -36,7 +37,7 @@ def new_project(root : str, name : str, venv : bool, libs = []):
 
         #   Create saving file for projectcreator
         with open(f"{path}\\.prc\\config.json", "w") as config:
-            unparsed = {"libs" : libs,}
+            unparsed = {"libs" : libs, "name" : name}
             parsed = json.dumps(unparsed)
 
             config.write(parsed)
@@ -44,15 +45,15 @@ def new_project(root : str, name : str, venv : bool, libs = []):
         with open(f"{path}\\.gitignore", "w") as gitignore:
             gitignore.write("/.prc\n")
 
-        print(f"new project '{name}' has been created in path '{os.getcwd()}\{name}'")
+        print(f"New project '{name}' has been created in path '{os.getcwd()}\{name}'")
     if venv:
         tmp = [f" --AddLib {i}" for i in libs]
-        os.system(f"batch\\venv {root} {name} {list_to_string(tmp)}")
+        os.system(f"scripts\\venv {root} {name} {list_to_string(tmp)}")
         #Make a batch file to install all specified librarys
         with open(f"{path}\\activate_venv.bat", "w") as batch:
             batch.write("@echo off\n")
             batch.write("call Scripts\\activate.bat\n")
-            lib_install_list = [f"echo Installing {i}\npip install {i}" for i in libs]
+            lib_install_list = [f"echo Installing library {i}\npip install {i}" for i in libs]
             lib_install_str = list_to_string(lib_install_list, "\n")
             batch.write(lib_install_str)
 
@@ -65,5 +66,8 @@ if sys.argv[1] == "new":
     params = sys.argv
     print(f"Creating project in {params[2]}/{params[3]}")
     new_project(params[2], params[3], to_bool(params[4]), [params[i] for i in range(5, len(params))])
+elif sys.argv[1] == "build":
+    print("Building project")
+    start_build(os.getcwd())
 else:
     print("operation invalid")

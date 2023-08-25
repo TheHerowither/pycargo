@@ -32,8 +32,14 @@ goto :validate
     echo    --StartCode if this flag is active the project will be opened in vscode after cration
     goto :eof
 
+:build
+    echo building
+    python "%pa%\\main.py build" 
+    goto :eof
+
 :validate
     if "%~1"=="?" goto :help
+    if "%~1"=="build" goto :build
 
     if "%~1"=="" echo Required field 'operation' at index '1' has not been filled in
     if "%~2"=="" echo Required field 'root' at index '2' has not been filled in
