@@ -34,7 +34,7 @@ goto :validate
 
 :build
     echo building
-    python "%pa%\\main.py build" 
+    python "%pa%\\main.py" build 
     goto :eof
 
 :validate
