@@ -68,6 +68,6 @@ if sys.argv[1] == "new":
     new_project(params[2], params[3], to_bool(params[4]), [params[i] for i in range(5, len(params))])
 elif sys.argv[1] == "build":
     print("Building project")
-    start_build(os.getcwd())
+    start_build(sys.argv[2])
 else:
     print("operation invalid")
